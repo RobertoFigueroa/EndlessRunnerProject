@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PatformManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject[] _platformPrefabs;
+  
+    public GameObject[] _platformPrefabs;
     [SerializeField]
     private int _zedOffset;
 
