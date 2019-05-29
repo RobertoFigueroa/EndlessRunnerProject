@@ -26,6 +26,7 @@ public class PatformManager : MonoBehaviour
         //reposiciona la siguiente plataforma
         platform.transform.position = new Vector3(0, 0, _zedOffset);
         _zedOffset += 150;
+        GameController.points += 5;
 
     }
 
