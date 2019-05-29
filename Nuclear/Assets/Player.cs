@@ -10,6 +10,11 @@ public class Player : MonoBehaviour
     private float gravity = 1.0f;
     private float yvelocity = 0.0f;
     public Animator animator;
+    public float force = 5.0f;
+    public float gunRange = 5.0f;
+    public Camera fpscam;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,6 +79,31 @@ public class Player : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
         
     }
-  
+
+    private void FixedUpdate()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            Shoot();
+        }
+    }
+
+    private void Shoot()
+    {
+
+        if (Physics.Raycast(fpscam.transform.position, fpscam.transform.forward, out RaycastHit hitInfo, gunRange))
+        {
+
+
+            if (hitInfo.collider.gameObject.CompareTag("target"))
+            {
+                hitInfo.rigidbody.AddForce(-hitInfo.normal * force, ForceMode.Impulse);
+                
+
+            }
+
+        }
+
+    }
 
 }

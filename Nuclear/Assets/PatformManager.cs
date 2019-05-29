@@ -28,4 +28,9 @@ public class PatformManager : MonoBehaviour
         _zedOffset += 150;
 
     }
+
+    public int getOffset()
+    {
+        return _zedOffset;
+    }
 }
