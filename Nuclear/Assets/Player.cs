@@ -6,15 +6,15 @@ public class Player : MonoBehaviour
 {
     private CharacterController controller;
     private float speed = 5.0f;
-    private float jumpHeight = 10.0f;
+    private float jumpHeight = 20.0f;
     private float gravity = 1.0f;
     private float yvelocity = 0.0f;
-    private bool isPositionLeft = false;
-    private bool isPositionRight = false;
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
+
     }
 
     // Update is called once per frame
@@ -27,27 +27,44 @@ public class Player : MonoBehaviour
 
         //salta al egregarle velocidad al eje y
         //se debe chequear si el jugador puede saltar, en este caso que esté en el suelo
-        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)))
+        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))) 
         {
-            controller.SimpleMove(new Vector3(-3, 0, 0));
+
+            controller.SimpleMove(new Vector3(-0.1f / Time.deltaTime, 0, 0));
+            controller.transform.Find("Robot1").rotation = Quaternion.Euler(0,-15,0);
+
+
+
         }
-        if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)))
+        else if ((Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)))
         {
-            controller.SimpleMove(new Vector3(3, 0, 0));
+            controller.SimpleMove(new Vector3(0.1f / Time.deltaTime, 0, 0));
+            controller.transform.Find("Robot1").rotation = Quaternion.Euler(0, 15, 0);
+
+
+        }
+        else
+        {
+            controller.transform.Find("Robot1").rotation = Quaternion.Euler(0, 0, 0);
+
+
         }
         if (controller.isGrounded)
         {
+            animator.SetBool("is_grounded", true);
             //chequera que el al presionar space salte
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 yvelocity = jumpHeight;
-                
+                animator.SetBool("is_grounded", false);
+
             }
         }
         else
         {
             //agregamos gravedad para caer
             yvelocity -= gravity;
+            //modificamos la variable de la animación
         }
         velocity.y = yvelocity;
         //tomar la velocidad en y e igualarla a la variable local
@@ -55,7 +72,7 @@ public class Player : MonoBehaviour
 
         //Move (velocidad *time.deltatime)
         controller.Move(velocity * Time.deltaTime);
-
+        
     }
   
 
