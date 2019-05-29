@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     public static float bestScore;
     public static float health;
     public Canvas canv;
+    public Sprite onFire;
     
     void Start()
     {
@@ -38,6 +39,12 @@ public class GameController : MonoBehaviour
 
         }
 
+        if(points > bestScore)
+        {
+            canv.transform.Find("HighScore").GetComponent<Image>().sprite = onFire;
+
+        }
+
 
 
     }
@@ -48,6 +55,7 @@ public class GameController : MonoBehaviour
         if(points > bestScore)
         {
             PlayerPrefs.SetFloat("High", points);
+
         }
     }
 
