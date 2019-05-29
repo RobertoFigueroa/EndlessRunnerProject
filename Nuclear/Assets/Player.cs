@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private CharacterController controller;
-    private float speed = 5.0f;
+    private float speed = 25.0f;
     private float jumpHeight = 20.0f;
     private float gravity = 1.0f;
     private float yvelocity = 0.0f;
@@ -91,7 +91,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Shoot();
 
@@ -108,8 +108,9 @@ public class Player : MonoBehaviour
 
         if (Physics.Raycast(myRay, out hitInfo) && hitInfo.transform.gameObject.CompareTag("target"))
         {
-            hitInfo.rigidbody.AddForce(-hitInfo.normal * force, ForceMode.Impulse);
-            
+            //sentecia para empujar el objeto
+            //hitInfo.rigidbody.AddForce(-hitInfo.normal * force, ForceMode.Impulse);
+            Destroy(hitInfo.transform.gameObject);
         }
 
 
@@ -128,6 +129,7 @@ public class Player : MonoBehaviour
     {
         fpscam.transform.Find("LostCanvas").Find("LoserPanel").gameObject.SetActive(true);
         Time.timeScale = 0;
+        GameController.health = 0;
         GameController.BestScoreCalculator();      
         PauseMenuCanvasScript.loser = true;
     }

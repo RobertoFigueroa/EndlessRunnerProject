@@ -6,7 +6,7 @@ public class RandomObjectManager : MonoBehaviour
 {
     private PatformManager manager;
     public GameObject[] obstacles;
-    private float spawnRate = 0.3f;
+    private float spawnRate = 0.1f;
     private float nextSpawn = 0.0f;
     int offset = 0;
 

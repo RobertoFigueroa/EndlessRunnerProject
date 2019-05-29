@@ -51,7 +51,7 @@ public class PauseMenuCanvasScript : MonoBehaviour
         Time.timeScale = 1.0f;
     }
 
-    public void BackToMenu(string sceneName)
+    public void ChangeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
