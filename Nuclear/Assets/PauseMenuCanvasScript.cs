@@ -41,13 +41,13 @@ public class PauseMenuCanvasScript : MonoBehaviour
 
     public void Pause()
     {
-        transform.Find("Pause").gameObject.SetActive(true);
+        transform.Find("Pause").transform.gameObject.SetActive(true);
         Time.timeScale = 0.0f;
     }
 
     public void Continue()
     {
-        transform.Find("Pause").gameObject.SetActive(false);
+        transform.Find("Pause").transform.gameObject.SetActive(false);
         Time.timeScale = 1.0f;
     }
 

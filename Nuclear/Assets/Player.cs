@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
     
       public void Loose()
     {
-        fpscam.transform.Find("LostCanvas").Find("LoserPanel").gameObject.SetActive(true);
+        fpscam.transform.Find("LostCanvas").transform.Find("LoserPanel").transform.gameObject.SetActive(true);
         Time.timeScale = 0;
         GameController.health = 0;
         GameController.BestScoreCalculator();      
